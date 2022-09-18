@@ -1,4 +1,5 @@
 ﻿using DataBaseNet.Data;
+using DataBaseNet.Data.Entittes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace DataBaseNet
         {
             try
             {
+                lvProducts.Clear();
                 lvProducts.LargeImageList = new ImageList();
                 lvProducts.LargeImageList.ImageSize = new Size(64, 64);
                 foreach (var p in myData.Products
@@ -61,6 +63,23 @@ namespace DataBaseNet
         {
             UsersForm dlg = new UsersForm();
             dlg.ShowDialog() ;
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            AddProductForm dlg = new AddProductForm();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {                
+                Product product = new Product()
+                {
+                    Name = dlg.Name,
+                    Price = dlg.Price,
+                    DescriptionPrice = dlg.Description
+                };
+                myData.Products.Add(product);
+                myData.SaveChanges();
+                Load();
+            }
         }
     }
 }
