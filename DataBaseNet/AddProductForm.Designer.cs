@@ -36,6 +36,10 @@
             this.txtDiscription = new System.Windows.Forms.TextBox();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.btnCansel = new System.Windows.Forms.Button();
+            this.lvImages = new System.Windows.Forms.ListView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAddImage = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -81,7 +85,7 @@
             // 
             // txtDiscription
             // 
-            this.txtDiscription.Location = new System.Drawing.Point(27, 217);
+            this.txtDiscription.Location = new System.Drawing.Point(21, 214);
             this.txtDiscription.Multiline = true;
             this.txtDiscription.Name = "txtDiscription";
             this.txtDiscription.Size = new System.Drawing.Size(272, 85);
@@ -89,7 +93,7 @@
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(522, 54);
+            this.btnAddProduct.Location = new System.Drawing.Point(678, 43);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(94, 29);
             this.btnAddProduct.TabIndex = 2;
@@ -99,7 +103,7 @@
             // 
             // btnCansel
             // 
-            this.btnCansel.Location = new System.Drawing.Point(522, 113);
+            this.btnCansel.Location = new System.Drawing.Point(678, 102);
             this.btnCansel.Name = "btnCansel";
             this.btnCansel.Size = new System.Drawing.Size(94, 29);
             this.btnCansel.TabIndex = 2;
@@ -107,11 +111,41 @@
             this.btnCansel.UseVisualStyleBackColor = true;
             this.btnCansel.Click += new System.EventHandler(this.btnCansel_Click);
             // 
+            // lvImages
+            // 
+            this.lvImages.Location = new System.Drawing.Point(6, 40);
+            this.lvImages.Name = "lvImages";
+            this.lvImages.Size = new System.Drawing.Size(295, 190);
+            this.lvImages.TabIndex = 3;
+            this.lvImages.UseCompatibleStateImageBehavior = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnAddImage);
+            this.groupBox1.Controls.Add(this.lvImages);
+            this.groupBox1.Location = new System.Drawing.Point(335, 214);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(437, 247);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Фото товару";
+            // 
+            // btnAddImage
+            // 
+            this.btnAddImage.Location = new System.Drawing.Point(319, 40);
+            this.btnAddImage.Name = "btnAddImage";
+            this.btnAddImage.Size = new System.Drawing.Size(94, 29);
+            this.btnAddImage.TabIndex = 4;
+            this.btnAddImage.Text = "Додати";
+            this.btnAddImage.UseVisualStyleBackColor = true;
+            this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
+            // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 490);
+            this.ClientSize = new System.Drawing.Size(837, 577);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCansel);
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.txtDiscription);
@@ -122,6 +156,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddProductForm";
             this.Text = "Продукт";
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +172,8 @@
         private TextBox txtDiscription;
         private Button btnAddProduct;
         private Button btnCansel;
+        private ListView lvImages;
+        private GroupBox groupBox1;
+        private Button btnAddImage;
     }
 }
