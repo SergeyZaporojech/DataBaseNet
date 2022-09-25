@@ -118,6 +118,12 @@
             this.lvImages.Size = new System.Drawing.Size(295, 190);
             this.lvImages.TabIndex = 3;
             this.lvImages.UseCompatibleStateImageBehavior = false;
+            this.lvImages.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvImages_ItemDrag);
+            this.lvImages.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvImages_DragDrop);
+            this.lvImages.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvImages_DragEnter);
+            this.lvImages.DragOver += new System.Windows.Forms.DragEventHandler(this.lvImages_DragOver);
+            this.lvImages.DragLeave += new System.EventHandler(this.lvImages_DragLeave);
+
             // 
             // groupBox1
             // 
