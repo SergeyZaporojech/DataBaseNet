@@ -89,7 +89,7 @@
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(327, 56);
+            this.btnAddProduct.Location = new System.Drawing.Point(522, 54);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(94, 29);
             this.btnAddProduct.TabIndex = 2;
@@ -99,7 +99,7 @@
             // 
             // btnCansel
             // 
-            this.btnCansel.Location = new System.Drawing.Point(327, 115);
+            this.btnCansel.Location = new System.Drawing.Point(522, 113);
             this.btnCansel.Name = "btnCansel";
             this.btnCansel.Size = new System.Drawing.Size(94, 29);
             this.btnCansel.TabIndex = 2;
@@ -111,7 +111,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 323);
+            this.ClientSize = new System.Drawing.Size(680, 490);
             this.Controls.Add(this.btnCansel);
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.txtDiscription);

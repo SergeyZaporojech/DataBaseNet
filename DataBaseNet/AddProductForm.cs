@@ -22,7 +22,6 @@ namespace DataBaseNet
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-
             Name = txtName.Text;
             Description = txtDiscription.Text;
             Price = Convert.ToDecimal(txtPrice.Text);

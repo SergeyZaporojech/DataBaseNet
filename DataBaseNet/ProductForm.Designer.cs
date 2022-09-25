@@ -32,15 +32,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnAddProduct = new System.Windows.Forms.Button();
+            this.btnRemoveProduct = new System.Windows.Forms.Button();
+            this.btnEditProduct = new System.Windows.Forms.Button();
+            this.btnInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvProducts
             // 
             this.lvProducts.Location = new System.Drawing.Point(12, 68);
+            this.lvProducts.MultiSelect = false;
             this.lvProducts.Name = "lvProducts";
             this.lvProducts.Size = new System.Drawing.Size(775, 370);
             this.lvProducts.TabIndex = 0;
             this.lvProducts.UseCompatibleStateImageBehavior = false;
+            this.lvProducts.InsertionMark.Color = Color.Green;
+            this.lvProducts.AllowDrop = true;
+            this.lvProducts.ItemDrag += new ItemDragEventHandler(lvProducts_ItemDrag);
+            this.lvProducts.DragEnter += new DragEventHandler(lvProducts_DragEnter);
+            this.lvProducts.DragOver += new DragEventHandler(lvProducts_DragOver);
+            this.lvProducts.DragLeave += new EventHandler(lvProducts_DragLeave);
+            this.lvProducts.DragDrop += new DragEventHandler(lvProducts_DragDrop);
+            this.lvProducts.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvProducts_MouseDoubleClick);
             // 
             // label1
             // 
@@ -73,11 +85,44 @@
             this.btnAddProduct.UseVisualStyleBackColor = true;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
+            // btnRemoveProduct
+            // 
+            this.btnRemoveProduct.Location = new System.Drawing.Point(810, 115);
+            this.btnRemoveProduct.Name = "btnRemoveProduct";
+            this.btnRemoveProduct.Size = new System.Drawing.Size(132, 29);
+            this.btnRemoveProduct.TabIndex = 4;
+            this.btnRemoveProduct.Text = "Видалити";
+            this.btnRemoveProduct.UseVisualStyleBackColor = true;
+            this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
+            // 
+            // btnEditProduct
+            // 
+            this.btnEditProduct.Location = new System.Drawing.Point(810, 167);
+            this.btnEditProduct.Name = "btnEditProduct";
+            this.btnEditProduct.Size = new System.Drawing.Size(132, 33);
+            this.btnEditProduct.TabIndex = 5;
+            this.btnEditProduct.Text = "Редагувати";
+            this.btnEditProduct.UseVisualStyleBackColor = true;
+            this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.Location = new System.Drawing.Point(810, 223);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(132, 50);
+            this.btnInfo.TabIndex = 6;
+            this.btnInfo.Text = "Інформація про товар";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 450);
+            this.Controls.Add(this.btnInfo);
+            this.Controls.Add(this.btnEditProduct);
+            this.Controls.Add(this.btnRemoveProduct);
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.btnUsers);
             this.Controls.Add(this.label1);
@@ -95,5 +140,8 @@
         private Label label1;
         private Button btnUsers;
         private Button btnAddProduct;
+        private Button btnRemoveProduct;
+        private Button btnEditProduct;
+        private Button btnInfo;
     }
 }
