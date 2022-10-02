@@ -1,6 +1,6 @@
 ﻿namespace DataBaseNet
 {
-    partial class AddProductForm
+    partial class EditProductForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,18 +34,18 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDiscription = new System.Windows.Forms.TextBox();
-            this.btnAddProduct = new System.Windows.Forms.Button();
-            this.btnCansel = new System.Windows.Forms.Button();
             this.lvImages = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddImage = new System.Windows.Forms.Button();
+            this.btnEditProduct = new System.Windows.Forms.Button();
+            this.btnCansel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 19);
+            this.label1.Location = new System.Drawing.Point(12, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 0;
@@ -53,15 +53,15 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(27, 56);
+            this.txtName.Location = new System.Drawing.Point(12, 61);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(272, 27);
+            this.txtName.Size = new System.Drawing.Size(226, 27);
             this.txtName.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 98);
+            this.label2.Location = new System.Drawing.Point(12, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 20);
             this.label2.TabIndex = 0;
@@ -69,15 +69,15 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(27, 135);
+            this.txtPrice.Location = new System.Drawing.Point(12, 144);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(131, 27);
+            this.txtPrice.Size = new System.Drawing.Size(226, 27);
             this.txtPrice.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(335, 56);
+            this.label3.Location = new System.Drawing.Point(297, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 0;
@@ -85,38 +85,18 @@
             // 
             // txtDiscription
             // 
-            this.txtDiscription.Location = new System.Drawing.Point(335, 90);
+            this.txtDiscription.Location = new System.Drawing.Point(297, 61);
             this.txtDiscription.Multiline = true;
             this.txtDiscription.Name = "txtDiscription";
-            this.txtDiscription.Size = new System.Drawing.Size(272, 85);
+            this.txtDiscription.Size = new System.Drawing.Size(270, 68);
             this.txtDiscription.TabIndex = 1;
-            // 
-            // btnAddProduct
-            // 
-            this.btnAddProduct.Location = new System.Drawing.Point(678, 43);
-            this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(94, 29);
-            this.btnAddProduct.TabIndex = 2;
-            this.btnAddProduct.Text = "Додати";
-            this.btnAddProduct.UseVisualStyleBackColor = true;
-            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
-            // 
-            // btnCansel
-            // 
-            this.btnCansel.Location = new System.Drawing.Point(678, 102);
-            this.btnCansel.Name = "btnCansel";
-            this.btnCansel.Size = new System.Drawing.Size(94, 29);
-            this.btnCansel.TabIndex = 2;
-            this.btnCansel.Text = "Скасувати";
-            this.btnCansel.UseVisualStyleBackColor = true;
-            this.btnCansel.Click += new System.EventHandler(this.btnCansel_Click);
             // 
             // lvImages
             // 
-            this.lvImages.Location = new System.Drawing.Point(6, 40);
+            this.lvImages.Location = new System.Drawing.Point(7, 26);
             this.lvImages.Name = "lvImages";
-            this.lvImages.Size = new System.Drawing.Size(631, 190);
-            this.lvImages.TabIndex = 3;
+            this.lvImages.Size = new System.Drawing.Size(576, 139);
+            this.lvImages.TabIndex = 2;
             this.lvImages.UseCompatibleStateImageBehavior = false;
             this.lvImages.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvImages_ItemDrag);
             this.lvImages.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvImages_DragDrop);
@@ -128,39 +108,61 @@
             // 
             this.groupBox1.Controls.Add(this.btnAddImage);
             this.groupBox1.Controls.Add(this.lvImages);
-            this.groupBox1.Location = new System.Drawing.Point(21, 224);
+            this.groupBox1.Location = new System.Drawing.Point(12, 198);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(788, 247);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.Size = new System.Drawing.Size(740, 199);
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Фото товару";
+            this.groupBox1.Text = "Фото";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnAddImage
             // 
-            this.btnAddImage.Location = new System.Drawing.Point(668, 40);
+            this.btnAddImage.Location = new System.Drawing.Point(616, 26);
             this.btnAddImage.Name = "btnAddImage";
             this.btnAddImage.Size = new System.Drawing.Size(94, 29);
-            this.btnAddImage.TabIndex = 4;
+            this.btnAddImage.TabIndex = 3;
             this.btnAddImage.Text = "Додати";
             this.btnAddImage.UseVisualStyleBackColor = true;
             this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
             // 
-            // AddProductForm
+            // btnEditProduct
+            // 
+            this.btnEditProduct.Location = new System.Drawing.Point(663, 43);
+            this.btnEditProduct.Name = "btnEditProduct";
+            this.btnEditProduct.Size = new System.Drawing.Size(94, 29);
+            this.btnEditProduct.TabIndex = 4;
+            this.btnEditProduct.Text = "Змінити";
+            this.btnEditProduct.UseVisualStyleBackColor = true;
+            this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
+            // 
+            // btnCansel
+            // 
+            this.btnCansel.Location = new System.Drawing.Point(663, 100);
+            this.btnCansel.Name = "btnCansel";
+            this.btnCansel.Size = new System.Drawing.Size(94, 29);
+            this.btnCansel.TabIndex = 5;
+            this.btnCansel.Text = "Скасувати";
+            this.btnCansel.UseVisualStyleBackColor = true;
+            this.btnCansel.Click += new System.EventHandler(this.btnCansel_Click);
+            // 
+            // EditProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 577);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(803, 450);
             this.Controls.Add(this.btnCansel);
-            this.Controls.Add(this.btnAddProduct);
+            this.Controls.Add(this.btnEditProduct);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtDiscription);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "AddProductForm";
-            this.Text = "Продукт";
+            this.Name = "EditProductForm";
+            this.Text = "Редагування товару";
+            this.Load += new System.EventHandler(this.EditProductForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,10 +177,10 @@
         private TextBox txtPrice;
         private Label label3;
         private TextBox txtDiscription;
-        private Button btnAddProduct;
-        private Button btnCansel;
         private ListView lvImages;
         private GroupBox groupBox1;
         private Button btnAddImage;
+        private Button btnEditProduct;
+        private Button btnCansel;
     }
 }

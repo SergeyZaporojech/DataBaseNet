@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataBaseNet.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +12,7 @@ using System.Windows.Forms;
 
 namespace DataBaseNet
 {
-    public partial class AddProductForm : Form
+    public partial class EditProductForm : Form
     {
         private class ListViewIndexComparer : System.Collections.IComparer   //клас для порівняння
         {
@@ -20,40 +22,80 @@ namespace DataBaseNet
             }
         }
 
+        MyDataContext myData = new MyDataContext();
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-
-        public List<string> Images { get; set; } = new List<string>();
-        public AddProductForm()
+        public List<string> ListImages { get; set; } = new List<string>();
+        public EditProductForm()
         {
             InitializeComponent();
             lvImages.LargeImageList = new ImageList();
-            lvImages.LargeImageList.ImageSize = new Size(64,64);
+            lvImages.LargeImageList.ImageSize = new Size(64, 64);
             lvImages.MultiSelect = false;                                      // настройки для перетягуванння
-            lvImages.ListViewItemSorter= new ListViewIndexComparer();  
+            lvImages.ListViewItemSorter = new ListViewIndexComparer();
             // Initialize the insertion mark.
             lvImages.InsertionMark.Color = Color.Green;                        // настройки для перетягуванння
-            lvImages.AllowDrop = true;                                         // настройки для перетягуванння            
+            lvImages.AllowDrop = true;                                         // настройки для перетягуванння         
         }
 
-        private void btnAddProduct_Click(object sender, EventArgs e)
-        {
-            Name = txtName.Text;
-            Description = txtDiscription.Text;
-            Price = Convert.ToDecimal(txtPrice.Text);
 
-            foreach (ListViewItem item in lvImages.Items)
-            {
-                Images.Add((string)item.Tag);                
-            }
-            DialogResult = DialogResult.OK;
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void btnCansel_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.OK;
+        }
+
+        private void EditProductForm_Load(object sender, EventArgs e)
+        {
+            var prod = myData.Products
+                          .AsQueryable();
+            foreach (var item in prod)
+            {
+                if (Id == item.Id)
+                {
+                    txtName.Text = item.Name;
+                    txtPrice.Text = item.Price.ToString();
+                    txtDiscription.Text = item.DescriptionPrice;
+                }
+            }
+            var products = myData.Products
+                .Include(x => x.ProductImages);            
+            
+            foreach (var item in products)
+            {
+                foreach (var images in item.ProductImages)
+                {
+                    if (images.ProductId == Id)
+                    {
+                        string key = Guid.NewGuid().ToString();
+                        ListViewItem lv = new ListViewItem();
+                        lv.Tag = $"Images\\{images.Name}";
+                        lv.Text = Path.GetFileName(images.Name);
+                        lv.ImageKey = key;
+                        lvImages.LargeImageList.Images.Add(key, Image.FromFile($"Images/{images.Name}"));
+                        lvImages.Items.Add(lv);
+                    }                   
+                }                
+            }
+        }
+
+        private void btnEditProduct_Click(object sender, EventArgs e)
+        {
+            Name = txtName.Text;
+            Price = Decimal.Parse(txtPrice.Text);
+            Description = txtDiscription.Text;
+
+            foreach (ListViewItem item in lvImages.Items)
+            {
+                ListImages.Add(item.Tag.ToString());
+            }
+            DialogResult = DialogResult.OK;
         }
 
         private void btnAddImage_Click(object sender, EventArgs e)
@@ -69,15 +111,12 @@ namespace DataBaseNet
                 item.ImageKey = key;
                 lvImages.LargeImageList.Images.Add(key, Image.FromFile(dlg.FileName));
                 lvImages.Items.Add(item);
-
-                //pbImage.Image = Image.FromFile(dlg.FileName);
-                //ImagePhoto = dlg.FileName;
             }
         }
 
         private void lvImages_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            lvImages.DoDragDrop(e.Item,DragDropEffects.Move);
+            lvImages.DoDragDrop(e.Item, DragDropEffects.Move);
         }
 
         private void lvImages_DragEnter(object sender, DragEventArgs e)

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,8 +57,7 @@ namespace DataBaseNet
                        id,
                        Image.FromFile($"Images/{image}"));
 
-                    ListViewItem item = new ListViewItem();
-                    // item.Name = p.Id.ToString();
+                    ListViewItem item = new ListViewItem();                    
                     item.Tag = p;
                     item.Text = $"{p.Name}\r\n{p.Price}";
                     item.ImageKey = $"{id}";
@@ -89,30 +89,128 @@ namespace DataBaseNet
                 };
                 myData.Products.Add(product);
                 myData.SaveChanges();
+
+                Product prod = myData.Products          
+                .Where(e=>e.Name == product.Name)
+                .FirstOrDefault<Product>();
+
+                string dir = "Images";
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+                foreach (var item in dlg.Images)
+                {
+                    Bitmap bitmap = new Bitmap(item);
+                    string imageName = Path.GetRandomFileName() + ".jpg";
+                    bitmap.Save(Path.Combine(dir, imageName), ImageFormat.Jpeg);
+
+                    int count = 0;
+                    ProductImage productImage = new ProductImage()
+                    {
+                        Name = imageName,
+                        Priority = ++count,
+                        ProductId = prod.Id
+                    };
+                    myData.ProductImages.Add(productImage);
+                    myData.SaveChanges();
+                }
                 Load();
             }
         }
 
         private void btnRemoveProduct_Click(object sender, EventArgs e)
         {
-            var product = lvProducts.Items[0].Selected;
-            //foreach (var item in product)
-            //{
-            //    MessageBox.Show($"{item.GetType}");
-            //}
-            
-            //MessageBox.Show($"{product.ContainsKey}");
+            var listSelect = lvProducts.SelectedItems;
+            if (listSelect.Count > 0)
+            {
+                var item = listSelect[0];
+                var p = (Product)item.Tag;
+                myData.Products.Remove(p);
+                myData.SaveChanges();
 
-
+                //string dir = "Images";
+                //    if (!Directory.Exists(dir))
+                //        Directory.CreateDirectory(dir);
+                //    foreach (var i in dlg.ListImages)
+                //    {
+                //        Bitmap bitmap = new Bitmap(i);
+                //        string imageName = Path.GetRandomFileName() + ".jpg";
+                //        bitmap.Save(Path.Combine(dir, imageName), ImageFormat.Jpeg);
+                //        int count = 0;
+                //        ProductImage productImage = new ProductImage()
+                //        {
+                //            Name = imageName,
+                //            Priority = ++count,
+                //            ProductId = p.Id
+                //        };
+                //        myData.ProductImages.Update(productImage);
+                //        myData.SaveChanges();
+                //    }
+                Load();                
+            }
+            else
+            {
+                MessageBox.Show("Продукт не вибраний");
+            }
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
-            //var select = lvProducts.SelectedItems.Contains;
-            //ListViewItem item = new ListViewItem();
-            
-            //MessageBox.Show(select);
-           
+            var listSelect = lvProducts.SelectedItems;
+            if (listSelect.Count > 0)
+            {
+                var item = listSelect[0];
+                var p = (Product)item.Tag;
+                EditProductForm dlg = new EditProductForm();
+                dlg.Id = p.Id;                
+                
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    p.Name = dlg.Name;
+                    p.Price = dlg.Price;
+                    p.DescriptionPrice = dlg.Description;                                       
+                    myData.SaveChanges();
+
+                    var images = myData.Products
+                        .Include(x => x.ProductImages);
+
+                    foreach (var pr in images)
+                    {
+                        foreach (var im in pr.ProductImages)
+                        {
+                            if (im.ProductId == p.Id)
+                            {
+                                pr.ProductImages.Remove(im);
+                            }
+                        }
+                    }
+                    myData.SaveChanges();
+
+                    string dir = "Images";
+                    if (!Directory.Exists(dir))
+                        Directory.CreateDirectory(dir);
+                        int count = 0;
+                    foreach (var img in dlg.ListImages)
+                    {
+                        Bitmap bitmap = new Bitmap(img);
+                        string imageName = Path.GetRandomFileName() + ".jpg";
+                        bitmap.Save(Path.Combine(dir, imageName), ImageFormat.Jpeg);
+                        ProductImage productImage = new ProductImage()
+                        {
+                            Name = imageName,
+                            Priority = ++count,
+                            ProductId = p.Id
+                        };
+                        myData.ProductImages.Add(productImage);
+                        myData.SaveChanges();
+                    }
+                    Load();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Продукт не вибраний");
+            }
+
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
@@ -226,6 +324,7 @@ namespace DataBaseNet
             // Remove the original copy of the dragged item.
             lvProducts.Items.Remove(draggedItem);
         }
+
 
     }
 }

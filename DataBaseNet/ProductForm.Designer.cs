@@ -39,19 +39,18 @@
             // 
             // lvProducts
             // 
-            this.lvProducts.Location = new System.Drawing.Point(12, 68);
+            this.lvProducts.AllowDrop = true;
+            this.lvProducts.Location = new System.Drawing.Point(12, 49);
             this.lvProducts.MultiSelect = false;
             this.lvProducts.Name = "lvProducts";
             this.lvProducts.Size = new System.Drawing.Size(775, 370);
             this.lvProducts.TabIndex = 0;
             this.lvProducts.UseCompatibleStateImageBehavior = false;
-            this.lvProducts.InsertionMark.Color = Color.Green;
-            this.lvProducts.AllowDrop = true;
-            this.lvProducts.ItemDrag += new ItemDragEventHandler(lvProducts_ItemDrag);
-            this.lvProducts.DragEnter += new DragEventHandler(lvProducts_DragEnter);
-            this.lvProducts.DragOver += new DragEventHandler(lvProducts_DragOver);
-            this.lvProducts.DragLeave += new EventHandler(lvProducts_DragLeave);
-            this.lvProducts.DragDrop += new DragEventHandler(lvProducts_DragDrop);
+            this.lvProducts.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvProducts_ItemDrag);
+            this.lvProducts.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvProducts_DragDrop);
+            this.lvProducts.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvProducts_DragEnter);
+            this.lvProducts.DragOver += new System.Windows.Forms.DragEventHandler(this.lvProducts_DragOver);
+            this.lvProducts.DragLeave += new System.EventHandler(this.lvProducts_DragLeave);
             this.lvProducts.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvProducts_MouseDoubleClick);
             // 
             // label1
@@ -128,7 +127,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvProducts);
             this.Name = "ProductForm";
-            this.Text = "ProductForm";
+            this.Text = "ProductForm";            
             this.ResumeLayout(false);
             this.PerformLayout();
 

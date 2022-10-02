@@ -12,6 +12,7 @@ namespace DataBaseNet
 {
     public partial class AddUserForm : System.Windows.Forms.Form
     {
+        
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Phone { get; set; }
@@ -28,6 +29,11 @@ namespace DataBaseNet
             FirstName = txtFirstName.Text;
             Phone = txtPhone.Text;
             Email = txtEmail.Text;
+            DialogResult = DialogResult.OK;
+        }
+
+        private void btnCansel_Click(object sender, EventArgs e)
+        {
             DialogResult = DialogResult.OK;
         }
     }

@@ -58,6 +58,7 @@
             this.btnCansel.TabIndex = 0;
             this.btnCansel.Text = "Скасувати";
             this.btnCansel.UseVisualStyleBackColor = true;
+            this.btnCansel.Click += new System.EventHandler(this.btnCansel_Click);
             // 
             // label1
             // 
